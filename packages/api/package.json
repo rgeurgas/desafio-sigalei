@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@koa/router": "^9.3.1",
+    "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "graphql-api-koa": "^6.0.0",
     "graphql-tools": "^6.0.15",
