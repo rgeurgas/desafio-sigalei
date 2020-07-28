@@ -1,8 +1,12 @@
 import Koa = require('koa');
+import Bodyparser = require('koa-bodyparser');
+
 // eslint-disable-next-line import/first
 import { router } from './router';
 
 const app = new Koa();
+
+app.use(Bodyparser());
 
 app.use((ctx, next) => {
   ctx.body = 'hello world';
