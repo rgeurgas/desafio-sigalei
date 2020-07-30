@@ -1,0 +1,12 @@
+type Query {
+  repository(name: String = "linux", owner: String = "torvalds"): Repository
+}
+
+type Repository {
+  name: String
+  defaultBranchRef: DefaultBranchRef
+}
+
+type DefaultBranchRef {
+  id: ID
+}
