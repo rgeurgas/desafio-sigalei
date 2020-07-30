@@ -2,14 +2,17 @@ import React from 'react';
 import './App.css';
 import { Routes } from './Routes';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Home } from './Views/Home';
+import { Home } from './Views/Home/Home';
 
 // Colocar o router aqui
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path={`${Routes.HOME}`} component={Home} />
+        <Route
+          path={`${Routes.HOME}`}
+          render={(props) => <Home expression={'master'} />}
+        />
       </Switch>
     </BrowserRouter>
   );
