@@ -4,7 +4,6 @@ import { Routes } from './Routes';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Home } from './Views/Home/Home';
 
-// Colocar o router aqui
 function App() {
   return (
     <BrowserRouter>

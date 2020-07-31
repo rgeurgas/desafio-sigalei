@@ -1,10 +1,18 @@
 import React from 'react';
-import { XYPlot, VerticalBarSeries, XAxis, YAxis } from 'react-vis';
+import {
+  makeWidthFlexible,
+  XYPlot,
+  VerticalBarSeries,
+  XAxis,
+  YAxis,
+} from 'react-vis';
 
 interface Props {
   data: Array<any>;
   pos: number;
 }
+
+const FlexibleXYPlot = makeWidthFlexible(XYPlot);
 
 export const Histogram = ({ data, pos }: Props) => {
   const matrixData = data.map((el, index) => {
@@ -19,14 +27,14 @@ export const Histogram = ({ data, pos }: Props) => {
   });
 
   return (
-    <XYPlot width={700} height={300}>
+    <FlexibleXYPlot height={300} padding>
       <VerticalBarSeries barWidth={0.5} data={matrixData} style={{}} />
       <XAxis
         tickFormat={(x) => {
           return nameData[x];
         }}
       />
-      <YAxis />
-    </XYPlot>
+      <YAxis tickTotal={10} tickPadding={4} />
+    </FlexibleXYPlot>
   );
 };

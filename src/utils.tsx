@@ -1,7 +1,16 @@
 import React from 'react';
+import { Grid, CircularProgress } from '@material-ui/core';
 
 export interface IHash<T> {
   [details: string]: T;
+}
+
+export function loading() {
+  return (
+    <Grid container justify="center" alignItems="center">
+      <CircularProgress />
+    </Grid>
+  );
 }
 
 export function sortHashBy(
