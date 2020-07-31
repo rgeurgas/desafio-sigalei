@@ -1,11 +1,15 @@
 import React from 'react';
 
-export function getConnectionNodes<T>(connectionObj: {
-  edges: Array<T | null> | null;
-}): Array<T> {
+export interface IHash {
+  [details: string]: any;
+}
+
+export function getConnectionNodes<T>(
+  connectionObj: Array<T | null> | null,
+): Array<T> {
   let ret: Array<T> = [];
-  if (connectionObj && connectionObj.edges && connectionObj.edges.length > 0) {
-    connectionObj.edges.forEach((el) => {
+  if (connectionObj && connectionObj.length > 0) {
+    connectionObj.forEach((el) => {
       if (el) {
         ret.push(el);
       }
