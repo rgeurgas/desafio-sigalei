@@ -1,7 +1,8 @@
 import React from 'react';
 import { usePaginationFragment } from 'react-relay/hooks';
 import { graphql } from 'babel-plugin-relay/macro';
-import { IHash } from '../../utils';
+import { IHash, sortHashBy } from '../../utils';
+import { Histogram } from './Histogram';
 import { InsightsQuery$key } from './__generated__/InsightsQuery.graphql';
 
 interface Props {
@@ -24,12 +25,12 @@ interface Node {
 }
 
 function createRanking({ node: array }: Node) {
-  const ranking: IHash = {};
+  const ranking: IHash<Array<number>> = {};
 
   array.forEach((el) => {
     if (el && el.author && el.author.user) {
       if (el.author.user.login in ranking) {
-        const temp = ranking[el.author.user.login];
+        const temp: Array<number> = ranking[el.author.user.login];
         ranking[el.author.user.login] = [
           temp[0] + 1,
           temp[1] + el.additions,
@@ -87,11 +88,18 @@ export const Insights = ({ history }: Props) => {
     }
   });
 
-  const ranking = createRanking({ node: parseddata });
+  // const ranking: IHash<Array<number>> = createRanking({ node: parseddata });
+  // const array = sortHashBy(
+  //   ranking,
+  //   (a, b) => {
+  //     return a[1] - b[1];
+  //   },
+  //   false,
+  // );
 
   return (
     <div>
-      {}
+      {/* {<Histogram data={array.slice(0, 10)} pos={1} />} */}
       {hasNext ? (
         <button disabled={isLoadingNext} onClick={() => loadNext(100)}>
           {isLoadingNext ? 'Loading...' : 'Load more'}

@@ -1,7 +1,34 @@
 import React from 'react';
 
-export interface IHash {
-  [details: string]: any;
+export interface IHash<T> {
+  [details: string]: T;
+}
+
+export function sortHashBy(
+  hash: IHash<any>,
+  compareFn: (a: any, b: any) => number,
+  asc: boolean = true,
+) {
+  const array: Array<Array<any>> = [];
+
+  for (let key in hash) {
+    const obj = hash[key];
+    array.push([key]);
+    if (obj instanceof Array) {
+      obj.forEach((el) => {
+        array[array.length - 1].push(el);
+      });
+    } else {
+      array[array.length - 1].push(obj);
+    }
+  }
+
+  array.sort(compareFn);
+  if (!asc) {
+    array.reverse();
+  }
+
+  return array;
 }
 
 export function getConnectionNodes<T>(
