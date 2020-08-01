@@ -33,16 +33,16 @@ yarn start
 
 Após terminar de compilar e abrir seu site estará rodando no link [http://localhost:3000](http://localhost:3000).
 
-## Built With
+## Feito com
 
 - [React](https://reactjs.org/) - Biblioteca em JavaScript usada para a interface.
 - [Relay](https://relay.dev/) - Usado para fazer queries de GraphQL.
 - [Material-UI](https://material-ui.com/) - Usado para uma interface mais bonita.
 - [Typescript](https://www.typescriptlang.org/) - Linguagem utilizada para facilitar a escalabilidade.
 
-## Authors
+## Autores
 
-- **Rodrigo Geurgas** - _Initial work_ - [rgeurgas](https://github.com/rgeurgas)
+- **Rodrigo Geurgas** - [rgeurgas](https://github.com/rgeurgas)
 
 ## License
 
