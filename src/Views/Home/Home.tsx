@@ -6,6 +6,7 @@ import {
   HomeQueryVariables,
 } from './__generated__/HomeQuery.graphql';
 import { Insights } from './Insights';
+import { Typography } from '@material-ui/core';
 
 export const Home = () => {
   const [branch, setBranch] = useState('master');
@@ -32,7 +33,7 @@ export const Home = () => {
   );
 
   if (!repository) {
-    return <div>hm</div>;
+    return <Typography>Error fetching data</Typography>;
   }
 
   return <Insights history={repository.object!!} />;
