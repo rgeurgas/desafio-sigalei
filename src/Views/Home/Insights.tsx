@@ -136,44 +136,56 @@ export const Insights = ({ history }: Props) => {
             padding: 8,
           }}
         >
-          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
-            <Card>
-              <CardContent>
-                <Typography>
-                  Gráfico dos 10 usuários com mais commits
-                </Typography>
-                <Histogram data={result!!.byCommits.slice(0, 10)} pos={1} />
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
-            <Card>
-              <CardContent>
-                <Typography>
-                  Gráfico dos 10 usuários com mais adições de linhas de código
-                </Typography>
-                <Histogram data={result!!.byAdditions.slice(0, 10)} pos={2} />
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
-            <Card>
-              <CardContent>
-                <Typography>
-                  Gráfico dos 10 usuários com mais remoções de linhas de código
-                </Typography>
-                <Histogram data={result!!.byDeletions.slice(0, 10)} pos={3} />
-              </CardContent>
-            </Card>
-          </Grid>
-
           <ContentGraphs
             data={result!!}
             totalCount={data.history.totalCount}
             dataTotal={data.history.edges!!.length}
           />
+
+          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
+            <Card>
+              <CardContent>
+                <Typography align="center">
+                  Gráfico dos 10 usuários com mais commits
+                </Typography>
+                <Histogram
+                  data={result!!.byCommits.slice(0, 10)}
+                  pos={1}
+                  ylabel={'Commits'}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
+            <Card>
+              <CardContent>
+                <Typography align="center">
+                  Gráfico dos 10 usuários com mais adições de linhas de código
+                </Typography>
+                <Histogram
+                  data={result!!.byAdditions.slice(0, 10)}
+                  pos={2}
+                  ylabel={'Adições'}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} lg={6} style={{ padding: 8 }}>
+            <Card>
+              <CardContent>
+                <Typography align="center">
+                  Gráfico dos 10 usuários com mais remoções de linhas de código
+                </Typography>
+                <Histogram
+                  data={result!!.byDeletions.slice(0, 10)}
+                  pos={3}
+                  ylabel={'Remoções'}
+                />
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       ) : null}
       {hasNext ? (
@@ -193,7 +205,7 @@ export const Insights = ({ history }: Props) => {
             color="primary"
             onClick={() => loadNext(100)}
           >
-            {isLoadingNext || pending ? 'Loading...' : 'Load more'}
+            {isLoadingNext || pending ? 'Carregando...' : 'Carregar mais dados'}
           </Button>
         </Grid>
       ) : null}
