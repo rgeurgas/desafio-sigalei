@@ -10,21 +10,24 @@ import {
 interface Props {
   totalCount: number;
   dataTotal: number;
-  data: {
-    byCommits: any[][];
-    byAdditions: any[][];
-    byDeletions: any[][];
-  };
+  data: any[][];
 }
 
+/**
+ * Component that creates two cards for showing general data
+ * @param totalCount - Number of commits in the repository
+ * @param dataTotal - Number of commits fetched with the graphql query
+ * @param data - Matrix with the first column being the name of the user, the second how many commits, the third how many additions and the fourth how many deletions they have
+ */
 export default ({ totalCount, dataTotal, data }: Props) => {
-  const sum = data.byCommits.reduce(
+  // Calculate the mean of the
+  const sum = data.reduce(
     (a, b) => ['', a[1] + b[1], a[2] + b[2], a[3] + b[3]],
     ['', 0, 0, 0],
   );
-  const meanCommits = sum[1] / data.byCommits.length;
-  const meanAdditions = sum[2] / data.byCommits.length;
-  const meanDeletions = sum[3] / data.byCommits.length;
+  const meanCommits = sum[1] / data.length;
+  const meanAdditions = sum[2] / data.length;
+  const meanDeletions = sum[3] / data.length;
 
   return (
     <Grid item xs={12} lg={6} style={{ padding: 8 }}>
@@ -37,7 +40,7 @@ export default ({ totalCount, dataTotal, data }: Props) => {
               </Typography>
               <Divider />
               <Typography variant="body2">
-                Número de usuários: {data.byCommits.length}
+                Número de usuários: {data.length}
               </Typography>
               <Typography variant="body2">
                 Média de commits por usuário: {meanCommits.toFixed(2)}

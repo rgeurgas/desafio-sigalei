@@ -12,6 +12,9 @@ interface Props {
   history: InsightsQuery$key;
 }
 
+/**
+ * Interface representing the graphql query node
+ */
 interface Node {
   node: Array<
     | {
@@ -24,6 +27,12 @@ interface Node {
   >;
 }
 
+/**
+ * Converts and array of nodes from the graphql query into and array counting how many
+ * nodes are from the same user and how many additions and deletions he made in total
+ * @param node - Array of nodes containing author, additions and deletions
+ * @returns Hash with key being the username and data being [commits, additions, deletions]
+ */
 function createRanking({ node: array }: Node) {
   const ranking: IHash<Array<number>> = {};
 
@@ -45,6 +54,12 @@ function createRanking({ node: array }: Node) {
   return ranking;
 }
 
+/**
+ * Parse data from the graphql query into arrays sorted by how many commits, how many additions
+ * and how many deletions the user did
+ * @param edges - Graphql edges
+ * @returns Commits sorted by different criterias
+ */
 const parseData = async (
   { signal }: { signal: any },
   edges: ReadonlyArray<{
@@ -94,7 +109,13 @@ const parseData = async (
   return { byCommits: array1, byAdditions: array2, byDeletions: array3 };
 };
 
+/**
+ * Component that queries 100 commits initially then queries 100 more each time
+ * the user clicks the button
+ * @param history - History object from graphql query
+ */
 export const Insights = ({ history }: Props) => {
+  // Create pagination fragment from relay modern to declare data requirements for the query
   const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
     graphql`
       fragment InsightsQuery on Commit
@@ -123,10 +144,12 @@ export const Insights = ({ history }: Props) => {
     history,
   );
 
+  // Parse data from graphql query asynchronously to not freeze the webpage
   const task = useAsyncTask(parseData);
   useAsyncRun(task, data.history.edges!!);
   const { pending, error, result } = task;
 
+  // If not pending or error rerender the insights and disable button if it is loading
   return (
     <div>
       {!pending && !error ? (
@@ -137,7 +160,7 @@ export const Insights = ({ history }: Props) => {
           }}
         >
           <ContentGraphs
-            data={result!!}
+            data={result!!.byCommits}
             totalCount={data.history.totalCount}
             dataTotal={data.history.edges!!.length}
           />

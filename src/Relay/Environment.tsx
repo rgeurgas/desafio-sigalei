@@ -5,6 +5,7 @@ import {
   authMiddleware,
 } from 'react-relay-network-modern';
 
+// Create the default relay environment
 const source = new RecordSource();
 const store = new Store(source);
 const network = new RelayNetworkLayer([

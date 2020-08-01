@@ -9,10 +9,16 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * Creates the default layout for the website
+ * @param toolbar - Toolbar text
+ * @param children - Content bellow the AppBar
+ */
 export default function Layout({
   toolbar = 'Desafio Sigalei',
   children,
 }: Props) {
+  // Hook for routing
   const history = useHistory();
 
   return (

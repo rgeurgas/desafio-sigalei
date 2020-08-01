@@ -7,6 +7,11 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import environment from './Relay/Environment';
 import { ErrorBoundary, loading } from './utils';
 
+/**
+ * Render main React Component App into #root, uses RelayEnvironmentProvider
+ * to create the environment for the react-relay hooks, ErrorBoundary
+ * in case of errors and a fallback while loading
+ */
 ReactDOM.render(
   <RelayEnvironmentProvider environment={environment}>
     <ErrorBoundary

@@ -1,15 +1,26 @@
 import React from 'react';
 import { Grid, CircularProgress } from '@material-ui/core';
 
+/**
+ * Interface for Hash types
+ */
 export interface IHash<T> {
   [details: string]: T;
 }
 
+/**
+ * Formats string date into locale format
+ * @param date - Date to format
+ * @returns {string} Locale converted string
+ */
 export function formatDate(date: string) {
   const ndate = new Date(date);
   return ndate.toLocaleString();
 }
 
+/**
+ * @returns {React.Component} Default loading Component
+ */
 export function loading() {
   return (
     <Grid container justify="center" alignItems="center">
@@ -18,6 +29,13 @@ export function loading() {
   );
 }
 
+/**
+ * Transforms an Hash into an Array containing [key, ...data] then sorts data
+ * @param hash - Hash to be converted
+ * @param compareFn - Function used to sort data
+ * @param {boolean} [asc=true] - If resulting array will be ascending
+ * @returns {Arrau<Array<any>>} Sorted array containing [key, ...data]
+ */
 export function sortHashBy(
   hash: IHash<any>,
   compareFn: (a: any, b: any) => number,
@@ -45,24 +63,16 @@ export function sortHashBy(
   return array;
 }
 
-export function getConnectionNodes<T>(
-  connectionObj: Array<T | null> | null,
-): Array<T> {
-  let ret: Array<T> = [];
-  if (connectionObj && connectionObj.length > 0) {
-    connectionObj.forEach((el) => {
-      if (el) {
-        ret.push(el);
-      }
-    });
-  }
-  return ret;
-}
-
+/**
+ * Interface for Errors
+ */
 interface ErrorBoundaryState {
   error: Error | null;
 }
 
+/**
+ * Default error boundary Component
+ */
 export class ErrorBoundary extends React.Component<
   {
     children: React.ReactNode;

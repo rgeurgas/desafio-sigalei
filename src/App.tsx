@@ -8,6 +8,9 @@ import { Commits } from './Views/Commits/Commits';
 import NotFoundPage from './ErrorPage/NotFoundPage';
 import queryString from 'query-string';
 
+/**
+ * Component used for routing
+ */
 export default function App() {
   return (
     <BrowserRouter>
@@ -24,6 +27,7 @@ export default function App() {
         <Route
           path={Routes.COMMITS}
           render={(props) => {
+            // Parse URL parameters
             const { user } = queryString.parse(props.location.search);
 
             return (

@@ -23,6 +23,9 @@ interface Props {
   user: string;
 }
 
+/**
+ * Interface representing the graphql query node
+ */
 interface Node {
   node: Array<
     | {
@@ -39,6 +42,12 @@ interface Node {
   >;
 }
 
+/**
+ * Parse data from the graphql query into an array with only commits made by the user
+ * @param edges - Graphql edges
+ * @param user - User for filtering the commits
+ * @returns Commits made by the user
+ */
 const parseData = async (
   { signal }: { signal: any },
   edges: ReadonlyArray<{
@@ -73,7 +82,14 @@ const parseData = async (
   });
 };
 
+/**
+ * Component that queries 100 commits initially then queries 100 more each time
+ * the user clicks the button
+ * @param history - History object from graphql query
+ * @param user - User that we want the commits from
+ */
 export const UserCommits = ({ history, user }: Props) => {
+  // Create pagination fragment from relay modern to declare data requirements for the query
   const { data, hasNext, loadNext, isLoadingNext } = usePaginationFragment(
     graphql`
       fragment UserCommitsQuery on Commit
@@ -106,14 +122,17 @@ export const UserCommits = ({ history, user }: Props) => {
     history,
   );
 
+  // Parse data from graphql query asynchronously to not freeze the webpage
   const task = useAsyncTask(parseData);
   useAsyncRun(task, data.history.edges!!, user);
   const { pending, error, result } = task;
 
+  // If no valid commit of the user was found
   if (result && result.length === 0) {
     return <Typography>Não foi encontrado commits deste usuário</Typography>;
   }
 
+  // If not pending or error rerender the table and disable button if it is loading
   return (
     <div style={{ padding: 8 }}>
       {!pending && !error ? (

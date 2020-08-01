@@ -8,6 +8,9 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * @param code - Error code
+ */
 const Status = ({ code, children }: Props) => (
   <Route
     render={({ staticContext }) => {
@@ -17,7 +20,11 @@ const Status = ({ code, children }: Props) => (
   />
 );
 
+/**
+ * Component that shows error on invalid route
+ */
 export default () => {
+  // Hook for routing
   const history = useHistory();
 
   return (
