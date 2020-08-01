@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Routes } from './Routes';
+import { Routes } from './Routes/Routes';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Home } from './Views/Home/Home';
 import Layout from './Views/Layout';
 import { Commits } from './Views/Commits/Commits';
-import Typography from '@material-ui/core/Typography';
+import NotFoundPage from './ErrorPage/NotFoundPage';
 import queryString from 'query-string';
 
 export default function App() {
@@ -33,11 +33,7 @@ export default function App() {
             );
           }}
         />
-        <Route
-          render={(props) => (
-            <Typography>Invalid path: {props.location.pathname}</Typography>
-          )}
-        />
+        <Route component={NotFoundPage} />
       </Switch>
     </BrowserRouter>
   );
