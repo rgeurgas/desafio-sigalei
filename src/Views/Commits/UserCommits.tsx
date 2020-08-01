@@ -28,7 +28,7 @@ interface Node {
     | {
         oid: unknown;
         abbreviatedOid: unknown;
-        messageHeadline: string;
+        message: string;
         author: { user: { login: string } | null } | null;
         committedDate: unknown;
         additions: number;
@@ -45,7 +45,7 @@ const parseData = async (
     readonly node: {
       readonly oid: unknown;
       readonly abbreviatedOid: unknown;
-      readonly messageHeadline: string;
+      readonly message: string;
       readonly author: {
         readonly user: {
           readonly login: string;
@@ -89,7 +89,7 @@ export const UserCommits = ({ history, user }: Props) => {
             node {
               oid
               abbreviatedOid
-              messageHeadline
+              message
               author {
                 user {
                   login
@@ -143,7 +143,7 @@ export const UserCommits = ({ history, user }: Props) => {
                 </TableCell>
                 <TableCell>
                   <Typography>
-                    <Box fontWeight="fontWeightBold">messageHeadline</Box>
+                    <Box fontWeight="fontWeightBold">message</Box>
                   </Typography>
                 </TableCell>
               </TableRow>
@@ -159,7 +159,7 @@ export const UserCommits = ({ history, user }: Props) => {
                   <TableCell>
                     {formatDate(row!!.node!!.committedDate as string)}
                   </TableCell>
-                  <TableCell>{row!!.node!!.messageHeadline}</TableCell>
+                  <TableCell>{row!!.node!!.message}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
