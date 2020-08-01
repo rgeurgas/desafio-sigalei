@@ -5,6 +5,11 @@ export interface IHash<T> {
   [details: string]: T;
 }
 
+export function formatDate(date: string) {
+  const ndate = new Date(date);
+  return ndate.toLocaleString();
+}
+
 export function loading() {
   return (
     <Grid container justify="center" alignItems="center">

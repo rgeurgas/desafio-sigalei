@@ -12,9 +12,11 @@ import {
   TableRow,
   TableCell,
   TableBody,
+  Box,
 } from '@material-ui/core';
 import { useAsyncTask, useAsyncRun } from 'react-hooks-async';
 import { UserCommitsQuery$key } from './__generated__/UserCommitsQuery.graphql';
+import { formatDate } from '../../utils';
 
 interface Props {
   history: UserCommitsQuery$key;
@@ -119,11 +121,31 @@ export const UserCommits = ({ history, user }: Props) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>abbreviatedOid</TableCell>
-                <TableCell align="right">additions</TableCell>
-                <TableCell align="right">deletions</TableCell>
-                <TableCell align="right">committedDate</TableCell>
-                <TableCell align="right">messageHeadline</TableCell>
+                <TableCell>
+                  <Typography>
+                    <Box fontWeight="fontWeightBold">abbreviatedOid</Box>
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography>
+                    <Box fontWeight="fontWeightBold">additions</Box>
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography>
+                    <Box fontWeight="fontWeightBold">deletions</Box>
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography>
+                    <Box fontWeight="fontWeightBold">committedDate</Box>
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography>
+                    <Box fontWeight="fontWeightBold">messageHeadline</Box>
+                  </Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -132,14 +154,12 @@ export const UserCommits = ({ history, user }: Props) => {
                   <TableCell component="th" scope="row">
                     {row!!.node!!.abbreviatedOid as string}
                   </TableCell>
-                  <TableCell align="right">{row!!.node!!.additions}</TableCell>
-                  <TableCell align="right">{row!!.node!!.deletions}</TableCell>
-                  <TableCell align="right">
-                    {row!!.node!!.committedDate as string}
+                  <TableCell>{row!!.node!!.additions}</TableCell>
+                  <TableCell>{row!!.node!!.deletions}</TableCell>
+                  <TableCell>
+                    {formatDate(row!!.node!!.committedDate as string)}
                   </TableCell>
-                  <TableCell align="right">
-                    {row!!.node!!.messageHeadline}
-                  </TableCell>
+                  <TableCell>{row!!.node!!.messageHeadline}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
