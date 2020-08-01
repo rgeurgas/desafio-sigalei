@@ -9,7 +9,7 @@ a ser buscado ou clique nas barras do histograma para ir diretamente para o usu�
 
 ## Para rodar
 
-Segue os passos necessários para rodar o site no teu computador.
+Segue os passos necessários para rodar o site localmente.
 
 Crie uma variável de ambiente chamada REACT_APP_GITHUB_PRIVATE_KEY com l seu [token do github](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) pode ser feito pelo [terminal](https://www.schrodinger.com/kb/1842) ou criando um arquivo .env na raiz do projeto.
 
