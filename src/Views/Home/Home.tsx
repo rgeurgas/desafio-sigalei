@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLazyLoadQuery } from 'react-relay/hooks';
 import { graphql } from 'babel-plugin-relay/macro';
-import { HomeQuery } from './__generated__/HomeQuery.graphql';
+import {
+  HomeQuery,
+  HomeQueryVariables,
+} from './__generated__/HomeQuery.graphql';
 import { Insights } from './Insights';
 
-interface Props {
-  expression: string;
-}
+export const Home = () => {
+  const [branch, setBranch] = useState('master');
+  const variables: HomeQueryVariables = { expression: branch };
 
-export const Home = ({ expression }: Props) => {
   const { repository } = useLazyLoadQuery<HomeQuery>(
     graphql`
       query HomeQuery($expression: String = "master") {
@@ -26,9 +28,7 @@ export const Home = ({ expression }: Props) => {
         }
       }
     `,
-    {
-      expression,
-    },
+    variables,
   );
 
   if (!repository) {
