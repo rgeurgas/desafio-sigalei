@@ -5,6 +5,7 @@ import {
   Button,
   Grid,
   Table,
+  Typography,
   Paper,
   TableContainer,
   TableHead,
@@ -106,6 +107,10 @@ export const UserCommits = ({ history, user }: Props) => {
   const task = useAsyncTask(parseData);
   useAsyncRun(task, data.history.edges!!, user);
   const { pending, error, result } = task;
+
+  if (result && result.length === 0) {
+    return <Typography>Não foi encontrado commits deste usuário</Typography>;
+  }
 
   return (
     <div style={{ padding: 8 }}>
