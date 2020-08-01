@@ -3,7 +3,6 @@ import {
   RelayNetworkLayer,
   urlMiddleware,
   authMiddleware,
-  progressMiddleware,
 } from 'react-relay-network-modern';
 
 const source = new RecordSource();
@@ -14,11 +13,6 @@ const network = new RelayNetworkLayer([
   }),
   authMiddleware({
     token: () => `${process.env.REACT_APP_GITHUB_PRIVATE_KEY}`,
-  }),
-  progressMiddleware({
-    onProgress: (current, total) => {
-      console.log('Downloaded: ' + current + ' B, total: ' + total + ' B');
-    },
   }),
 ]);
 
