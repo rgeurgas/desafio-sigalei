@@ -16,7 +16,7 @@ export default function App() {
           exact
           path={Routes.HOME}
           render={(props) => (
-            <Layout>
+            <Layout toolbar={'Insights'}>
               <Home />
             </Layout>
           )}
