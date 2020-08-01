@@ -1,44 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Desafio Sigalei
 
-## Available Scripts
+Este projeto foi criado para o Desafio Sigalei e tem como objetivo mostrar alguns dados sobre os commits no repositório
+do Linux, foi utilizado no projeto, typescript, relay e react.
 
-In the project directory, you can run:
+Baixe mais commits do repositório para atualizar os gráficos utilizando o botão no fim página e se tiver interesse
+em ver informações dos commits de cada usuário utilize o path /commits?user=username sendo o username o nome do usuário
+a ser buscado ou clique nas barras do histograma para ir diretamente para o usuário em questão.
 
-### `yarn start`
+## Para rodar
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Segue os passos necessários para rodar o site no teu computador.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Crie uma variável de ambiente chamada REACT_APP_GITHUB_PRIVATE_KEY com a seu [token do github](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) pode ser feito pelo [terminal](https://www.schrodinger.com/kb/1842) ou criando um arquivo .env na raiz do projeto.
 
-### `yarn test`
+Instale as dependências.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+yarn
+```
 
-### `yarn build`
+Gere o código necessário para o relay
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn relay
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Rode o servidor.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+yarn start
+```
 
-### `yarn eject`
+Após terminar de compilar e abrir seu site estará rodando no link [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Built With
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [React](https://reactjs.org/) - Biblioteca em JavaScript usada para a interface.
+- [Relay](https://relay.dev/) - Usado para fazer queries de GraphQL.
+- [Material-UI](https://material-ui.com/) - Usado para uma interface mais bonita.
+- [Typescript](https://www.typescriptlang.org/) - Linguagem utilizada para facilitar a escalabilidade.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Authors
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Rodrigo Geurgas** - _Initial work_ - [rgeurgas](https://github.com/rgeurgas)
 
-## Learn More
+## License
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Este projeto utiliza a licença do MIT - veja [LICENSE.md](LICENSE.md) para detalhes
